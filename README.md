@@ -2,6 +2,8 @@
 
 [Flutter]: https://flutter.dev/
 
+[![Status](https://img.shields.io/badge/Flutter-3.10.0-brightgreen)](https://github.com/flutter/flutter)
+
 - [Get started](https://docs.flutter.dev/get-started/)
 
 ## Practices
@@ -22,5 +24,5 @@
 
 ### `/usr/bin/ld: cannot find -lstdc++`
 
-Question: https://stackoverflow.com/q/74543715
-Solution: `sudo apt install libstdc++-12-dev -y`
+- Question: https://stackoverflow.com/q/74543715
+- Solution: `sudo apt install libstdc++-12-dev -y`
