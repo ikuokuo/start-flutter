@@ -1,0 +1,5 @@
+{
+  "helloWorld": "你好，世界！",
+  "appName": "Flutter 演示之 intl",
+  "pushTimes": "你已点击按钮的次数："
+}

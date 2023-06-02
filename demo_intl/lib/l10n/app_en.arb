@@ -1,0 +1,8 @@
+{
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "appName": "Flutter Demo: intl",
+  "pushTimes": "You have pushed the button this many times:"
+}
