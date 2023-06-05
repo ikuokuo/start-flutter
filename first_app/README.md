@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+![first_app](../_img/first_app.png)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

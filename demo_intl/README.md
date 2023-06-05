@@ -2,6 +2,8 @@
 
 [Internationalizing Flutter apps](https://docs.flutter.dev/accessibility-and-localization/internationalization)
 
+![demo_intl](../_img/demo_intl.png)
+
 Create project:
 
 ```bash
