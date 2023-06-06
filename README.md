@@ -10,6 +10,7 @@
 
 - [first_app/](first_app/): [Write your first app](https://docs.flutter.dev/get-started/codelab)
 - [demo_intl/](demo_intl/): [Internationalizing Flutter apps](https://docs.flutter.dev/accessibility-and-localization/internationalization)
+- [demo_mobx/](demo_mobx/): [MobX Counter Example](https://mobx.netlify.app/getting-started/)
 
 ## Issues
 
@@ -27,3 +28,8 @@
 
 - Question: https://stackoverflow.com/q/74543715
 - Solution: `sudo apt install libstdc++-12-dev -y`
+
+## References
+
+- [Flutter Awesome Site](https://flutterawesome.com/)
+- [Flutter Awesome List](https://github.com/Solido/awesome-flutter)
