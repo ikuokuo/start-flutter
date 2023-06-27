@@ -11,6 +11,7 @@
 - [first_app/](first_app/): [Write your first app](https://docs.flutter.dev/get-started/codelab)
 - [demo_intl/](demo_intl/): [Internationalizing Flutter apps](https://docs.flutter.dev/accessibility-and-localization/internationalization)
 - [demo_mobx/](demo_mobx/): [MobX Counter Example](https://mobx.netlify.app/getting-started/)
+- [demo_ncnn/](demo_ncnn/): ncnn yolox object detection example
 
 ## Issues
 
