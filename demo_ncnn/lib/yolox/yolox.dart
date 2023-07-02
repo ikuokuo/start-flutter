@@ -5,60 +5,102 @@
 import 'dart:ffi' as ffi;
 
 /// Bindings to `yolox.h`.
-class YoloX {
+class YOLOX {
   /// Holds the symbol lookup function.
   final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
       _lookup;
 
   /// The symbols are looked up in [dynamicLibrary].
-  YoloX(ffi.DynamicLibrary dynamicLibrary) : _lookup = dynamicLibrary.lookup;
+  YOLOX(ffi.DynamicLibrary dynamicLibrary) : _lookup = dynamicLibrary.lookup;
 
   /// The symbols are looked up with [lookup].
-  YoloX.fromLookup(
+  YOLOX.fromLookup(
       ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
           lookup)
       : _lookup = lookup;
 
-  ffi.Pointer<Objects> objects_create() {
-    return _objects_create();
+  ffi.Pointer<YoloX> yolox_create() {
+    return _yolox_create();
   }
 
-  late final _objects_createPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<Objects> Function()>>(
-          'objects_create');
-  late final _objects_create =
-      _objects_createPtr.asFunction<ffi.Pointer<Objects> Function()>();
+  late final _yolox_createPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<YoloX> Function()>>(
+          'yolox_create');
+  late final _yolox_create =
+      _yolox_createPtr.asFunction<ffi.Pointer<YoloX> Function()>();
 
-  void objects_destroy(
-    ffi.Pointer<Objects> objects,
+  void yolox_destroy(
+    ffi.Pointer<YoloX> yolox,
   ) {
-    return _objects_destroy(
-      objects,
+    return _yolox_destroy(
+      yolox,
     );
   }
 
-  late final _objects_destroyPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<Objects>)>>(
-          'objects_destroy');
-  late final _objects_destroy =
-      _objects_destroyPtr.asFunction<void Function(ffi.Pointer<Objects>)>();
+  late final _yolox_destroyPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<YoloX>)>>(
+          'yolox_destroy');
+  late final _yolox_destroy =
+      _yolox_destroyPtr.asFunction<void Function(ffi.Pointer<YoloX>)>();
 
-  int objects_detect(
-    ffi.Pointer<ffi.Char> imagepath,
-    ffi.Pointer<Objects> objects,
+  ffi.Pointer<DetectResult> detect_result_create() {
+    return _detect_result_create();
+  }
+
+  late final _detect_result_createPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<DetectResult> Function()>>(
+          'detect_result_create');
+  late final _detect_result_create = _detect_result_createPtr
+      .asFunction<ffi.Pointer<DetectResult> Function()>();
+
+  void detect_result_destroy(
+    ffi.Pointer<DetectResult> result,
   ) {
-    return _objects_detect(
-      imagepath,
-      objects,
+    return _detect_result_destroy(
+      result,
     );
   }
 
-  late final _objects_detectPtr = _lookup<
+  late final _detect_result_destroyPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<DetectResult>)>>(
+          'detect_result_destroy');
+  late final _detect_result_destroy = _detect_result_destroyPtr
+      .asFunction<void Function(ffi.Pointer<DetectResult>)>();
+
+  int detect(
+    ffi.Pointer<YoloX> yolox,
+    ffi.Pointer<ffi.Char> image_path,
+    ffi.Pointer<DetectResult> result,
+  ) {
+    return _detect(
+      yolox,
+      image_path,
+      result,
+    );
+  }
+
+  late final _detectPtr = _lookup<
       ffi.NativeFunction<
-          yo_err_t Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<Objects>)>>('objects_detect');
-  late final _objects_detect = _objects_detectPtr
-      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<Objects>)>();
+          yolox_err_t Function(ffi.Pointer<YoloX>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<DetectResult>)>>('detect');
+  late final _detect = _detectPtr.asFunction<
+      int Function(ffi.Pointer<YoloX>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<DetectResult>)>();
+}
+
+final class YoloX extends ffi.Struct {
+  external ffi.Pointer<ffi.Char> model_path;
+
+  external ffi.Pointer<ffi.Char> param_path;
+
+  @ffi.Float()
+  external double nms_thresh;
+
+  @ffi.Float()
+  external double conf_thresh;
+
+  @ffi.Float()
+  external double target_size;
 }
 
 final class Rect extends ffi.Struct {
@@ -85,15 +127,15 @@ final class Object extends ffi.Struct {
   external Rect rect;
 }
 
-final class Objects extends ffi.Struct {
+final class DetectResult extends ffi.Struct {
   @ffi.Int()
-  external int num;
+  external int object_num;
 
   external ffi.Pointer<Object> object;
 }
 
-typedef yo_err_t = ffi.Int;
+typedef yolox_err_t = ffi.Int;
 
-const int YO_OK = 0;
+const int YOLOX_OK = 0;
 
-const int YO_ERROR = -1;
+const int YOLOX_ERROR = -1;

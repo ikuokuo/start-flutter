@@ -14,7 +14,7 @@ Install deps:
 cd demo_ncnn/
 
 dart pub get
-# dart pub add ffi path
+# dart pub add ffi path logging
 # dart pub add -d ffigen
 
 sudo apt-get install libclang-dev
@@ -36,7 +36,7 @@ cd demo_ncnn/linux/lib/
 make
 
 # cpp test
-export LD_LIBRARY_PATH=`pwd`/dist/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=dist/lib:$(echo ncnn*)/lib:$LD_LIBRARY_PATH
 ./dist/bin/yolox_test
 
 # dart test

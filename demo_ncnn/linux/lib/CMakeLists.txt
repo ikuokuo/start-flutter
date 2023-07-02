@@ -18,6 +18,33 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
+# packages
+
+set(ncnn_DIR "${MY_CURR}/ncnn-20230517-ubuntu-2204-shared/lib/cmake")
+set(OpenCV_DIR "${MY_CURR}/opencv-mobile-4.6.0-ubuntu-2204/lib/cmake")
+
+if(NOT EXISTS ${ncnn_DIR})
+  message(FATAL_ERROR "ncnn_DIR not exists: ${ncnn_DIR}")
+endif()
+if(NOT EXISTS ${OpenCV_DIR})
+  message(FATAL_ERROR "OpenCV_DIR not exists: ${OpenCV_DIR}")
+endif()
+
+LIST(APPEND CMAKE_PREFIX_PATH ${ncnn_DIR})
+LIST(APPEND CMAKE_PREFIX_PATH ${OpenCV_DIR})
+
+## ncnn
+
+find_package(ncnn REQUIRED)
+message(STATUS "ncnn_FOUND: ${ncnn_FOUND}")
+
+## opencv
+
+find_package(OpenCV 4 REQUIRED)
+message(STATUS "OpenCV_VERSION: ${OpenCV_VERSION}")
+message(STATUS "OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}")
+message(STATUS "OpenCV_LIBS: ${OpenCV_LIBS}")
+
 # targets
 
 ## yolox
@@ -26,11 +53,13 @@ set(YOLOX_DIR ${MY_ROOT}/lib/yolox)
 
 include_directories(
   ${YOLOX_DIR}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 add_library(yolox SHARED
   ${YOLOX_DIR}/yolox.cc
 )
+target_link_libraries(yolox ncnn ${OpenCV_LIBS})
 set_target_properties(yolox PROPERTIES
   PUBLIC_HEADER ${YOLOX_DIR}/yolox.h
   VERSION ${PROJECT_VERSION}
@@ -42,7 +71,7 @@ set_target_properties(yolox PROPERTIES
 ## yolox_test
 
 add_executable(yolox_test yolox_test.cc)
-target_link_libraries(yolox_test yolox)
+target_link_libraries(yolox_test yolox ${OpenCV_LIBS})
 
 # install
 

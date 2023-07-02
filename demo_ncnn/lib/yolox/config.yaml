@@ -1,4 +1,4 @@
-name: YoloX
+name: YOLOX
 description: Bindings to `yolox.h`.
 output: 'yolox.dart'
 headers:

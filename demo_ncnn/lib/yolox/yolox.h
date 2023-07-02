@@ -4,10 +4,19 @@
 extern "C" {
 #endif
 
-typedef int yo_err_t;
+typedef int yolox_err_t;
 
-#define YO_OK        0
-#define YO_ERROR    -1
+#define YOLOX_OK        0
+#define YOLOX_ERROR    -1
+
+struct YoloX {
+  const char *model_path;   // path to model file
+  const char *param_path;   // path to param file
+
+  float nms_thresh;   // nms threshold
+  float conf_thresh;  // threshold of bounding box prob
+  float target_size;  // target image size after resize, might use 416 for small model
+};
 
 struct Rect {
   float x;
@@ -22,15 +31,18 @@ struct Object {
   struct Rect rect;
 };
 
-struct Objects {
-  int num;
+struct DetectResult {
+  int object_num;
   struct Object *object;
 };
 
-struct Objects *objects_create();
-void objects_destroy(struct Objects *objects);
+struct YoloX *yolox_create();
+void yolox_destroy(struct YoloX *yolox);
 
-yo_err_t objects_detect(const char *imagepath, struct Objects *objects);
+struct DetectResult *detect_result_create();
+void detect_result_destroy(struct DetectResult *result);
+
+yolox_err_t detect(struct YoloX *yolox, const char *image_path, struct DetectResult *result);
 
 #ifdef __cplusplus
 }
