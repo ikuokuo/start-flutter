@@ -49,3 +49,16 @@ If wanna rebuild dart bindings,
 cd demo_ncnn/
 dart run ffigen --config lib/yolox/config.yaml
 ```
+
+Run app:
+
+```bash
+flutter run -d linux
+```
+
+<!--
+flutter devices
+flutter emulators
+
+flutter build linux --release
+-->
