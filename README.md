@@ -12,6 +12,8 @@
 - [demo_intl/](demo_intl/): [Internationalizing Flutter apps](https://docs.flutter.dev/accessibility-and-localization/internationalization)
 - [demo_mobx/](demo_mobx/): [MobX Counter Example](https://mobx.netlify.app/getting-started/)
 - [demo_ncnn/](demo_ncnn/): ncnn yolox object detection example
+- plugins
+  - [ncnn_yolox/](plugins/ncnn_yolox/): ncnn yolox FFI plugin
 
 ## Issues
 

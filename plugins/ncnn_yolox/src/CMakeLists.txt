@@ -3,11 +3,12 @@
 # the plugin to fail to compile for some customers of the plugin.
 cmake_minimum_required(VERSION 3.10)
 
-project(ncnn_yolox_library VERSION 0.0.1 LANGUAGES C)
+project(ncnn_yolox_library VERSION 0.0.1 LANGUAGES C CXX)
 
 add_library(ncnn_yolox SHARED
-  "ncnn_yolox.c"
+  "ncnn_yolox.cc"
 )
+target_link_libraries(ncnn_yolox ncnn ${OpenCV_LIBS})
 
 set_target_properties(ncnn_yolox PROPERTIES
   PUBLIC_HEADER ncnn_yolox.h
