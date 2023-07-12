@@ -1,6 +1,0 @@
-name: YOLOX
-description: Bindings to `yolox.h`.
-output: 'yolox.dart'
-headers:
-  entry-points:
-    - 'yolox.h'

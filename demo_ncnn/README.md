@@ -1,5 +1,7 @@
 # demo_ncnn
 
+![demo_ncnn](../_img/demo_ncnn.png)
+
 ## Prepare
 
 Create project:
@@ -14,51 +16,37 @@ Install deps:
 cd demo_ncnn/
 
 dart pub get
-# dart pub add ffi path logging
-# dart pub add -d ffigen
 
 sudo apt-get install libclang-dev
 ```
 
+Install prebuild binary for plugin, see [plugins/ncnn_yolox/ncnn_yolox.md](../plugins/ncnn_yolox/ncnn_yolox.md).
+
+<!--
+dart pub add ffi path logging image easy_debounce
+dart pub add -d ffigen
+
+flutter pub add mobx flutter_mobx provider path_provider
+flutter pub add -d build_runner mobx_codegen
+-->
+
 ## Linux
-
-Download prebuild binary,
-
-- [ncnn](https://github.com/Tencent/ncnn/releases): ncnn-YYYYMMDD-ubuntu-2204-shared.zip
-- [opencv](https://github.com/nihui/opencv-mobile): opencv-mobile-4.6.0-ubuntu-2204.zip
-
-Unzip to `demo_ncnn/linux/lib/`.
-
-Build the `yolox` library,
-
-```bash
-cd demo_ncnn/linux/lib/
-make
-
-# cpp test
-export LD_LIBRARY_PATH=dist/lib:$(echo ncnn*)/lib:$LD_LIBRARY_PATH
-./dist/bin/yolox_test
-
-# dart test
-dart yolox_test.dart
-```
-
-If wanna rebuild dart bindings,
-
-```bash
-cd demo_ncnn/
-dart run ffigen --config lib/yolox/config.yaml
-```
 
 Run app:
 
 ```bash
+cd demo_ncnn/
 flutter run -d linux
 ```
 
-<!--
-flutter devices
-flutter emulators
+If wanna rebuild mobx stores,
 
-flutter build linux --release
--->
+```bash
+dart run build_runner build
+```
+
+## References
+
+- [nihui/ncnn-android-yolox](https://github.com/nihui/ncnn-android-yolox)
+- [KoheiKanagu/ncnn_yolox_flutter](https://github.com/KoheiKanagu/ncnn_yolox_flutter)
+- [tomassasovsky/ncnn.dart](https://github.com/tomassasovsky/ncnn.dart)
