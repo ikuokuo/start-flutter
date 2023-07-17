@@ -1,6 +1,8 @@
 # demo_ncnn
 
-![demo_ncnn](../_img/demo_ncnn.png)
+| Linux | Android |
+| - | - |
+| ![demo_ncnn](../_img/demo_ncnn.png) | ![demo_ncnn](../_img/demo_ncnn_android.png) |
 
 ## Prepare
 
@@ -43,6 +45,16 @@ If wanna rebuild mobx stores,
 
 ```bash
 dart run build_runner build
+```
+
+## Android
+
+Run app:
+
+```bash
+cd demo_ncnn/
+flutter run
+# flutter run --release
 ```
 
 ## References
